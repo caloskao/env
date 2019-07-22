@@ -1,26 +1,21 @@
 #!/bin/sh
-function cdw() {
-  convertedPath=$(cygpath -u "$1")
-  echo $convertedPath
-  cd "$convertedPath"
-}
 
-alias ls='ls --color --group-directories-first'
-alias ll='ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S'
-# alias lla='ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S'
-alias la='ls -ahF'
+alias ls="ls --color --group-directories-first"
+alias ll="ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S"
+# alias lla="ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S"
+alias la="ls -ahF"
 
-alias py='python3'
+alias py="python3"
 # alias pip=pip3
 
-# alias composer='composer --ansi'
-alias artisan='php artisan --ansi'
-alias dep='dep --ansi'
+# alias composer="composer --ansi"
+# alias artisan="php artisan --ansi"
+# alias dep="dep --ansi"
 
-alias bat='bat --color=always --theme="Monokai Extended"'
-alias batn='bat --style="changes,header"'
+alias bat="bat --color=always --theme="Monokai Extended""
+alias batn="bat --style="changes,header""
 
 ## For My Proxy Tunnel
-alias proxy-on='ssh -fN ssh-proxy-tunnel-gcp'
-alias proxy-check='ssh -O check ssh-proxy-tunnel-gcp'
-alias proxy-off='ssh -O exit ssh-proxy-tunnel-gcp'
+alias proxy-on="ssh -fN ssh-proxy-tunnel-gcp"
+alias proxy-check="ssh -O check ssh-proxy-tunnel-gcp"
+alias proxy-off="ssh -O exit ssh-proxy-tunnel-gcp"

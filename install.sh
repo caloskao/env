@@ -10,23 +10,23 @@ fi
 BASEDIR=~/.env
 
 if [ -f ~/.minttyrc ]; then
-    echo "Backup exists file ~/.minttyrc"
+    echo "Backup exists file: ~/.minttyrc"
     mv ~/.minttyrc ~/.minttyrc.bak.$(date +%Y%m%d%H%M%S)
 fi
 
 if [ ! -L ~/.minttyrc ]; then
-    echo "Create link ~/.minttyrc"
+    echo "Create link: ~/.minttyrc"
     ln -s $BASEDIR/minttyrc ~/.minttyrc
 fi
 
 if [ ! -f ~/.zshrc ]; then
-    echo "Create file ~/.zshrc"
+    echo "Create file: ~/.zshrc"
     touch ~/.zshrc
 fi
 
 src_cmd="source $(eval echo ~/.env/source_map.sh)"
 if ! grep -Fxq "$src_cmd" ~/.zshrc; then
-    echo "Install source map in ~/.zshrc"
+    echo "Add source map in ~/.zshrc"
     echo "$src_cmd" >> ~/.zshrc
 fi
 
