@@ -1,9 +1,9 @@
 #!/bin/sh
 
-alias ls="ls --color --group-directories-first"
-alias ll="ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S"
+alias ls="LC_COLLATE=C ls --color --group-directories-first"
+alias ll="LC_COLLATE=C ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S"
 # alias lla="ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S"
-alias la="ls -ahF"
+alias la="LC_COLLATE=C ls -ahF"
 
 alias py="python3"
 # alias pip=pip3
