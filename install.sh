@@ -20,4 +20,10 @@ cat $HOME/.env/lib-inst/*.sh | sh;
 
 zsh -c "source $HOME/.zshrc";
 
+echo "Change the default to zsh ... "
+
+chsh -s $(which zsh);
+
 echo "##### Installation completed! Enjoy! #####";
+
+$(which zsh);

@@ -32,6 +32,6 @@ fi
 
 printf "Reloading $HOME/.zshrc ... "
 
-source $HOME/.zshrc
+zsh -c "source $HOME/.zshrc";
 
 echo "Done."
