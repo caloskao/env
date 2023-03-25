@@ -10,4 +10,4 @@ git clone https://github.com/caloskao/env ~/.env;
 cat ~/.env/lib-inst/*.sh | sh;
 source ~/.zshrc;
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k;
-omz theme set powerlevel10k/powerlevel10k;
+zsh -c "omz theme set powerlevel10k/powerlevel10k";
