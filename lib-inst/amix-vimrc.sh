@@ -4,4 +4,4 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 echo 'set nu
 syntax on
-colorscheme solarized' > ~/.vim_runtime/my_configs.vim
+colorscheme ir_black' > ~/.vim_runtime/my_configs.vim
