@@ -5,5 +5,3 @@ function __cygwin_cd_windows_path() {
   #   echo $convertedPath
   cd "$convertedPath"
 }
-
-alias cdw=cd_windows_path
