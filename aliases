@@ -5,6 +5,8 @@ alias ll="LC_COLLATE=C ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S"
 # alias lla="ls -alhF --time-style=+%Y-%m-%d\ %H:%m:%S"
 alias la="LC_COLLATE=C ls -ahF"
 
+alias history="history -i 0"
+
 alias py="python3"
 # alias pip=pip3
 
@@ -12,10 +14,14 @@ alias py="python3"
 # alias artisan="php artisan --ansi"
 # alias dep="dep --ansi"
 
-alias bat="bat --color=always --theme="Monokai Extended""
-alias batn="bat --style="changes,header""
+alias bat="batcat --color=always --theme="Monokai Extended""
+alias batn="batcat --style="changes,header""
 
 ## For My Proxy Tunnel
 alias proxy-on="ssh -fN ssh-proxy-tunnel-gcp"
 alias proxy-check="ssh -O check ssh-proxy-tunnel-gcp"
 alias proxy-off="ssh -O exit ssh-proxy-tunnel-gcp"
+
+
+alias tinx="while true; do php artisan tinker; done"
+alias pwgen="pwgen -r Oo01l"
