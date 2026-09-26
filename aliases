@@ -14,8 +14,8 @@ alias py="python3"
 # alias artisan="php artisan --ansi"
 # alias dep="dep --ansi"
 
-alias bat="batcat --color=always --theme="Monokai Extended""
-alias batn="batcat --style="changes,header""
+alias bat="batcat --color=always --theme=Monokai\ Extended"
+alias batn="batcat --style=changes,header"
 
 ## For My Proxy Tunnel
 alias proxy-on="ssh -fN ssh-proxy-tunnel-gcp"
