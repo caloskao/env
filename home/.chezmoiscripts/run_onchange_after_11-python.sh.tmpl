@@ -1,0 +1,13 @@
+{{ if .modules.python -}}
+#!/bin/bash
+# uv + Python + markitdown；UV_NO_MODIFY_PATH 讓 installer 不改寫 rc 檔
+set -euo pipefail
+
+if ! command -v uv >/dev/null && [ ! -x "$HOME/.local/bin/uv" ]; then
+    curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh
+fi
+export PATH="$HOME/.local/bin:$PATH"
+
+uv python install
+uv tool install --upgrade 'markitdown[all]'
+{{ end -}}

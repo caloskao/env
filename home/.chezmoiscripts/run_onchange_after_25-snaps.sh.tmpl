@@ -1,0 +1,26 @@
+{{- $snaps := list -}}
+{{- range $module, $list := .packages.snap -}}
+{{-   if index $.modules $module -}}
+{{-     $snaps = concat $snaps $list -}}
+{{-   end -}}
+{{- end -}}
+{{ if $snaps -}}
+#!/bin/bash
+# snap 套件；snapd 需要 systemd，第一次裝好 WSL 若還沒生效，先 `wsl --shutdown` 再重跑 `chezmoi apply`
+set -euo pipefail
+
+if ! snap version >/dev/null 2>&1; then
+    echo "snapd is not available (is systemd running?); re-run 'chezmoi apply' after 'wsl --shutdown'" >&2
+    exit 1
+fi
+{{ range $snaps }}
+sudo snap install {{ . }}
+{{- end }}
+{{- if .modules.hugo }}
+
+# hugo 的 zsh completion 包成 oh-my-zsh custom plugin（.zshrc 的 plugins 會載入 hugo）
+plugin_dir="$HOME/.config/zsh/omz-custom/plugins/hugo"
+mkdir -p "$plugin_dir"
+/snap/bin/hugo completion zsh > "$plugin_dir/hugo.plugin.zsh"
+{{- end }}
+{{ end -}}

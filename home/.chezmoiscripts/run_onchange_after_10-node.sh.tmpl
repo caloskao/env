@@ -1,0 +1,15 @@
+{{ if .modules.node -}}
+#!/bin/bash
+# nvm + Node LTS；PROFILE=/dev/null 讓 nvm installer 不改寫 rc 檔（載入段落在 .zshrc）
+set -euo pipefail
+
+export NVM_DIR="$HOME/.nvm"
+if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+    curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | PROFILE=/dev/null bash
+fi
+
+set +u
+source "$NVM_DIR/nvm.sh"
+nvm install --lts
+nvm alias default 'lts/*'
+{{ end -}}

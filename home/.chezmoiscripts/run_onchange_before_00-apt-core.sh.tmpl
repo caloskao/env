@@ -1,0 +1,18 @@
+#!/bin/bash
+# core apt 套件；套件清單變動時重跑
+set -euo pipefail
+
+sudo apt-get update -qq
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+{{- range .packages.apt.core }}
+    {{ . }} \
+{{- end }}
+    ;
+
+for pkg in{{ range .packages.apt.core_if_available }} {{ . }}{{ end }}; do
+    if apt-cache show "$pkg" >/dev/null 2>&1; then
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "$pkg"
+    else
+        echo "skip: $pkg is not available on this Ubuntu release" >&2
+    fi
+done

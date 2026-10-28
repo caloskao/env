@@ -1,0 +1,15 @@
+# 由 chezmoi 管理（caloskao/env）
+# 個別 Host 放在 ~/.ssh/config.d/（不進 repo）。Include 必須在 Host * 之前，
+# 讓 config.d 的設定優先生效。
+Include config.d/*
+
+Host *
+    IdentityFile ~/.ssh/id_ed25519
+    # 每 5 分鐘送一次 keep-alive，連續 2 次失敗就斷線
+    ServerAliveInterval 300
+    ServerAliveCountMax 2
+    # 自動把未知主機加入 known_hosts
+    StrictHostKeyChecking accept-new
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h:%p
+    ConnectTimeout 10

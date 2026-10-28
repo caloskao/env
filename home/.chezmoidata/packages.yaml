@@ -1,0 +1,47 @@
+# 各模組的 apt 套件清單。清單一有變動，對應的 run_onchange_ 腳本就會重跑。
+packages:
+  apt:
+    core:
+      - zsh
+      - git
+      - git-lfs
+      - curl
+      - wget
+      - ca-certificates
+      - gnupg
+      - build-essential
+      - jq
+      - tree
+      - unzip
+      - 7zip
+      - bat
+      - btop
+      - lnav
+      - pwgen
+    # 舊版 Ubuntu 沒有的套件（例如 24.04 沒有 du-dust），找不到就略過並提示
+    core_if_available:
+      - du-dust
+    docker:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    devcli:
+      - gh
+    network:
+      - cloudflare-warp
+      - iperf3
+    media:
+      - ffmpeg
+    gui:
+      - xvfb
+      - fonts-noto-cjk
+      - fonts-arphic-ukai
+      - fonts-arphic-uming
+
+  snap:
+    gui:
+      - chromium
+    hugo:
+      - hugo

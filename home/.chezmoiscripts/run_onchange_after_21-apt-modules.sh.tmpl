@@ -1,0 +1,19 @@
+{{- $pkgs := list -}}
+{{- range $module, $list := .packages.apt -}}
+{{-   if and (ne $module "core") (index $.modules $module) -}}
+{{-     $pkgs = concat $pkgs $list -}}
+{{-   end -}}
+{{- end -}}
+{{ if $pkgs -}}
+#!/bin/bash
+# 已啟用模組的 apt 套件；清單或 repo 變動時重跑
+# repo script hash: {{ include ".chezmoiscripts/run_onchange_after_20-apt-repos.sh.tmpl" | sha256sum }}
+set -euo pipefail
+
+sudo apt-get update -qq
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+{{- range $pkgs }}
+    {{ . }} \
+{{- end }}
+    ;
+{{ end -}}

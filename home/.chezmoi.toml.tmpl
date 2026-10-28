@@ -1,0 +1,32 @@
+{{- /* 模組開關：第一次 init 會逐一詢問，之後沿用已存的答案；要改就執行 `chezmoi init --prompt` */ -}}
+{{- $node    := promptBoolOnce . "modules.node"    "Enable module node (nvm + Node LTS)" true -}}
+{{- $python  := promptBoolOnce . "modules.python"  "Enable module python (uv + Python + markitdown)" true -}}
+{{- $rust    := promptBoolOnce . "modules.rust"    "Enable module rust (rustup + cargo-binstall + tlrc)" false -}}
+{{- $tauri   := false -}}
+{{- if $rust -}}
+{{-   $tauri = promptBoolOnce . "modules.tauri"   "Also install tauri-cli" false -}}
+{{- end -}}
+{{- $bun     := promptBoolOnce . "modules.bun"     "Enable module bun" false -}}
+{{- $docker  := promptBoolOnce . "modules.docker"  "Enable module docker (docker-ce + compose + buildx)" true -}}
+{{- $devcli  := promptBoolOnce . "modules.devcli"  "Enable module devcli (gh + glab)" true -}}
+{{- $network := promptBoolOnce . "modules.network" "Enable module network (cloudflare-warp + wireproxy + iperf3)" false -}}
+{{- $media   := promptBoolOnce . "modules.media"   "Enable module media (ffmpeg)" false -}}
+{{- $gui     := promptBoolOnce . "modules.gui"     "Enable module gui (chromium + xvfb + CJK fonts)" false -}}
+{{- $hugo    := promptBoolOnce . "modules.hugo"    "Enable module hugo" false -}}
+{{- $wsl     := (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+
+[data]
+    wsl = {{ $wsl }}
+
+[data.modules]
+    node = {{ $node }}
+    python = {{ $python }}
+    rust = {{ $rust }}
+    tauri = {{ $tauri }}
+    bun = {{ $bun }}
+    docker = {{ $docker }}
+    devcli = {{ $devcli }}
+    network = {{ $network }}
+    media = {{ $media }}
+    gui = {{ $gui }}
+    hugo = {{ $hugo }}

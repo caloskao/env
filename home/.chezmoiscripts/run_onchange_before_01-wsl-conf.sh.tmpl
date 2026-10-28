@@ -1,0 +1,13 @@
+{{ if .wsl -}}
+#!/bin/bash
+# /etc/wsl.conf；修改後需在 Windows 端執行 `wsl --shutdown` 才會生效
+set -euo pipefail
+
+sudo tee /etc/wsl.conf >/dev/null <<'WSLCONF'
+[boot]
+systemd=true
+
+[user]
+default={{ .chezmoi.username }}
+WSLCONF
+{{ end -}}

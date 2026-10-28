@@ -1,0 +1,73 @@
+# 由 chezmoi 管理（caloskao/env），請勿直接修改；本機專屬設定放 ~/.zshrc.local
+
+# Powerlevel10k instant prompt，必須維持在檔案最前面
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# ----- PATH -----
+typeset -U path
+path=("$HOME/.local/bin" $path)
+{{- if .modules.rust }}
+path=("$HOME/.cargo/bin" $path)
+{{- end }}
+{{- if .modules.bun }}
+export BUN_INSTALL="$HOME/.bun"
+path=("$BUN_INSTALL/bin" $path)
+{{- end }}
+{{- if or .modules.gui .modules.hugo }}
+path+=(/snap/bin)
+{{- end }}
+
+# ----- oh-my-zsh -----
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.config/zsh/omz-custom"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+HIST_STAMPS="yyyy-mm-dd"
+
+plugins=(git history ssh ssh-agent zsh-autosuggestions)
+{{- if .modules.node }}
+plugins+=(npm)
+{{- end }}
+{{- if .modules.python }}
+plugins+=(python pip uv)
+{{- end }}
+{{- if .modules.rust }}
+plugins+=(rust)
+{{- end }}
+{{- if .modules.docker }}
+plugins+=(docker docker-compose)
+{{- end }}
+{{- if .modules.devcli }}
+plugins+=(gh)
+{{- end }}
+{{- if .modules.hugo }}
+plugins+=(hugo)
+{{- end }}
+
+source "$ZSH/oh-my-zsh.sh"
+
+# ----- History / completion -----
+HISTSIZE=50000
+SAVEHIST=50000
+zstyle ':completion:*:ssh:*' hosts off
+
+# ----- Toolchains -----
+{{- if .modules.node }}
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+{{- end }}
+{{- if .modules.bun }}
+# 用絕對路徑：`bun completions` 看到這行就不會再自行改寫 .zshrc
+[ -s "{{ .chezmoi.homeDir }}/.bun/_bun" ] && source "{{ .chezmoi.homeDir }}/.bun/_bun"
+{{- end }}
+
+# ----- Aliases / functions -----
+for _f in "$HOME"/.config/zsh/aliases.zsh "$HOME"/.config/zsh/functions/*.zsh(N); do
+  source "$_f"
+done
+unset _f
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local

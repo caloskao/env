@@ -1,0 +1,9 @@
+{{ if .modules.docker -}}
+#!/bin/bash
+# 讓目前使用者不用 sudo 就能操作 docker（重新登入後生效）
+set -euo pipefail
+
+if ! id -nG "$USER" | grep -qw docker; then
+    sudo usermod -aG docker "$USER"
+fi
+{{ end -}}
