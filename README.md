@@ -54,7 +54,7 @@ home/                     chezmoi source（.chezmoiroot）
 ├── .chezmoiexternal.toml oh-my-zsh、powerlevel10k、amix vimrc
 ├── .chezmoiscripts/      安裝腳本（before：core；after：各模組）
 ├── dot_zshrc.tmpl        依模組產生的 .zshrc
-└── dot_config/zsh/       aliases、functions
+└── private_dot_config/zsh/  aliases、functions（private_：目錄權限 0700）
 docs/post-install.md      安裝後的手動步驟
 tests/ci.sh               在全新 Ubuntu container 裡做 end-to-end 測試
 ```
