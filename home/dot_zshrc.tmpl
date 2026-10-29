@@ -25,7 +25,7 @@ export ZSH_CUSTOM="$HOME/.config/zsh/omz-custom"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 HIST_STAMPS="yyyy-mm-dd"
 
-plugins=(git history ssh ssh-agent zsh-autosuggestions)
+plugins=(git history ssh ssh-agent zsh-autosuggestions chezmoi)
 {{- if .modules.node }}
 plugins+=(npm)
 {{- end }}
