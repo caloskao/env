@@ -11,7 +11,7 @@ fi
 set +u
 source "$NVM_DIR/nvm.sh"
 # LTS 換版時把舊 default 的全域套件（例如 codegraph）帶到新版本
-prev=$(nvm version default)
+prev=$(nvm version default || true)
 lts=$(nvm version-remote --lts)
 if [ "$prev" != "N/A" ] && [ "$prev" != "$lts" ]; then
     nvm install "$lts" --reinstall-packages-from="$prev"
