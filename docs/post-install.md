@@ -35,9 +35,9 @@ glab auth login
 
 ## 5. 網路工具（network 模組）
 
-- 從舊機器複製 `/etc/wireproxy/*.conf` 和 `/etc/wireproxy/wg-conf/`，權限維持 `600`，然後執行：
-  `sudo systemctl enable --now wireproxy@<name>`
-- 要產生新的設定檔，執行 `sudo ~/.local/bin/manage-wireproxy`
+- wireproxy 由 [wireproxyctl](https://github.com/caloskao/wireproxyctl) 管理。沒有 systemd 的環境 apply 時會略過，啟用 systemd 後補跑 `sudo wireproxyctl install`
+- 用 VPN 供應商的 WireGuard 設定建立 profile：`sudo wireproxyctl add <name> --from <wg.conf>`；`wireproxyctl list` 查看狀態
+- 舊機器的 profile（`/etc/wireproxy/*.conf` + `wg-conf/`）可以直接複製過來繼續用，權限維持 `600`，然後 `sudo systemctl enable --now wireproxy@<name>`
 - Cloudflare WARP：`warp-cli registration new`
 
 ## 6. Windows 端

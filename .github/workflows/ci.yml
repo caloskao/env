@@ -13,5 +13,5 @@ jobs:
         ubuntu: ["24.04", "26.04"]
     container: ubuntu:${{ matrix.ubuntu }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: REPO="$GITHUB_WORKSPACE" bash tests/ci.sh

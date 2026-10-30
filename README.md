@@ -25,7 +25,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin init --apply caloskao/en
 | bun | bun | |
 | docker | docker-ce、compose、buildx、docker group | ✅ |
 | devcli | gh、glab | ✅ |
-| network | cloudflare-warp、wireproxy（`manage-wireproxy`）、iperf3 | |
+| network | cloudflare-warp、wireproxy（[wireproxyctl](https://github.com/caloskao/wireproxyctl)）、iperf3 | |
 | media | ffmpeg | |
 | gui | chromium、xvfb、CJK 字型 | |
 | hugo | hugo + zsh completion | |

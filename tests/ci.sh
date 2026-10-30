@@ -51,7 +51,7 @@ echo "::endgroup::"
 
 echo "::group::smoke test"
 zsh -i -c 'echo "zsh ok: $ZSH_THEME"' 2>&1 | tail -1
-for cmd in node npm uv markitdown cargo tldr bun docker gh glab wireproxy ffmpeg warp-cli iperf3 batcat btop lnav git-lfs 7z; do
+for cmd in node npm uv markitdown cargo tldr bun docker gh glab wireproxyctl ffmpeg warp-cli iperf3 batcat btop lnav git-lfs 7z; do
     zsh -i -c "command -v $cmd" >/dev/null 2>&1 || { echo "missing: $cmd"; exit 1; }
 done
 if apt-cache show du-dust >/dev/null 2>&1; then

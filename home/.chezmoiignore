@@ -1,6 +1,3 @@
 {{- if not .wsl }}
 .config/zsh/functions/cd_windows_path.zsh
 {{- end }}
-{{- if not .modules.network }}
-.local/bin/manage-wireproxy
-{{- end }}
